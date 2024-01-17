@@ -14,7 +14,6 @@ import 'constants.dart';
 class DartPad extends StatefulWidget {
   DartPad({
     required Key key,
-    this.embeddingChoice = EmbeddingChoice.dart,
     this.width = 600,
     this.height = 600,
     this.darkMode = true,
@@ -33,11 +32,6 @@ class DartPad extends StatefulWidget {
 
   /// The desired height of the dart pad widget.
   final double height;
-
-  /// The kind of dart pad widget to be generated.
-  ///
-  /// See: https://github.com/dart-lang/dart-pad/wiki/Embedding-Guide#embedding-choices
-  final EmbeddingChoice embeddingChoice;
 
   /// Whether the widget should use dark mode styling.
   final bool darkMode;
@@ -101,7 +95,7 @@ class DartPad extends StatefulWidget {
   String get iframeSrc {
     Uri uri = Uri.https(
       kDartPadHost,
-      _embeddingChoiceToString(embeddingChoice),
+      "",
       <String, String>{
         kThemeKey: darkMode ? kDarkMode : kLightMode,
         kRunKey: runImmediately.toString(),
@@ -163,31 +157,3 @@ class _DartPadState extends State<DartPad> {
   }
 }
 
-/// The embedding type to use with dart pad.
-///
-/// See: https://github.com/dart-lang/dart-pad/wiki/Embedding-Guide#embedding-choices
-enum EmbeddingChoice {
-  dart,
-  inline,
-  flutter,
-  html,
-}
-
-String _embeddingChoiceToString(EmbeddingChoice embeddingChoice) {
-  late String choiceText;
-  switch (embeddingChoice) {
-    case EmbeddingChoice.dart:
-      choiceText = 'dart';
-      break;
-    case EmbeddingChoice.inline:
-      choiceText = 'inline';
-      break;
-    case EmbeddingChoice.flutter:
-      choiceText = 'flutter';
-      break;
-    case EmbeddingChoice.html:
-      choiceText = 'html';
-      break;
-  }
-  return 'embed-$choiceText.html';
-}
