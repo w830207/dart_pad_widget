@@ -43,7 +43,6 @@ void main() {
                   key: Key('runnable Flutter code'),
                   width: 1000,
                   height: 400,
-                  embeddingChoice: EmbeddingChoice.flutter,
                   darkMode: true,
                   code: """import 'package:flutter/material.dart';
 
@@ -77,7 +76,6 @@ class _MyAppState extends State {
                   width: 800,
                   height: 400,
                   split: 60,
-                  embeddingChoice: EmbeddingChoice.flutter,
                   darkMode: false,
                   runImmediately: true,
                   code: """import 'package:flutter/material.dart';
